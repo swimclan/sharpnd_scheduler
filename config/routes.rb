@@ -1,13 +1,15 @@
 Rails.application.routes.draw do
-  get 'api/appointments' => 'appointments#index'
+  get 'api/appointments' => 'appointments#index', :defaults => { :format => 'json' }
 
-  get 'appointments/find'
+  get 'api/appointments/:id' => 'appointments#find', :defaults => { :format => 'json' }
 
-  get 'appointments/create'
+  post 'api/appointments' => 'appointments#create', :defaults => { :format => 'json' }
 
-  get 'appointments/update'
+  put 'api/appointments/:id' => 'appointments#update', :defaults => { :format => 'json' }
 
-  get 'appointments/destroy'
+  patch 'api/appointments/:id' => 'appointments#update', :defaults => { :format => 'json' }
+
+  delete 'api/appointments/:id' => 'appointments#destroy', :defaults => { :format => 'json' }
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
