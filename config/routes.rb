@@ -1,4 +1,25 @@
 Rails.application.routes.draw do
+  
+  root 'home#index'
+
+  get 'keys' => 'keys#index'
+
+  post 'keys' => 'keys#create'
+
+  delete 'keys' => 'keys#destroy'
+
+  get 'api/products' => 'products#all', :defaults => { :format => 'json' }
+
+  get 'api/products/:id' => 'products#find', :defaults => { :format => 'json' }
+
+  post 'api/products' => 'products#create', :defaults => { :format => 'json' }
+
+  put 'api/products/:id' => 'products#update', :defaults => { :format => 'json' }
+
+  patch 'api/products/:id' => 'products#update', :defaults => { :format => 'json' }
+
+  delete 'api/products/:id' => 'products#destroy', :defaults => { :format => 'json' }
+
   get 'api/appointments' => 'appointments#index', :defaults => { :format => 'json' }
 
   get 'api/appointments/:id' => 'appointments#find', :defaults => { :format => 'json' }

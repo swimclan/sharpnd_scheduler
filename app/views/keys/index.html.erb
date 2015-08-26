@@ -1,0 +1,31 @@
+<h1>API Key Manager</h1>
+<h4>Current API Key List</h4>
+<table>
+<thead>
+<tr><th>API Keys</th></tr>
+</thead>
+<tbody>
+<% @keys.each do |key| %>
+
+<tr>
+<td><%= key.secret_key %></td>
+<td>
+<%= form_for :key, url: { :action => 'destroy' }, :method => 'delete' do |f| %>
+	<%= f.hidden_field :id, :value => key.id %>
+	<%= f.submit 'Delete' %>
+<% end %>
+
+</td>
+</tr>
+
+<% end %>
+</tbody>
+</table>
+
+<hr>
+
+<%= form_for :key, url: { :action => 'create' } do |f| %>
+	<%= f.text_field :secret_key, :id => 'api-key', :placeholder => 'Generate a new key' %>
+	<%= button_tag "Generate!", :id => 'key-generate' %>
+	<%= f.submit 'Save' %>
+<% end %>

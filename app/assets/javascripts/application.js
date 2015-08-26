@@ -12,5 +12,16 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require underscore
+//= require backbone
 //= require turbolinks
 //= require_tree .
+
+$(document).ready(function() {
+	$('#key-generate').on('click', function(e) {
+		e.preventDefault();
+		var time_code = new Date().getTime();
+		var random
+		$('#api-key').val(window.btoa(time_code.toString()));
+	})
+});

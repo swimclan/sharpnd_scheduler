@@ -1,5 +1,7 @@
 class AppointmentsController < ApplicationController
+  before_filter :api_authorize
   def index
+
     @appointments = Appointment.all
     render json: @appointments
   end
@@ -10,22 +12,40 @@ class AppointmentsController < ApplicationController
   end
 
   def create
-    
-    @appointment = Appointment.create(:date_time => params[:date_time], :neighborhood => params[:neighborhood], :product_id => params[:product_id], :user_id => params[:user_id])
+    if params
+      puts 'params exist... using params...'
+      input_data = appointment_params
+    else
+      puts 'params don\'t exist trying the request body...'
+      puts "Request body: #{request.body.read}"
+      input_data = JSON.parse(request.body.read)
+    end
+    @appointment = Appointment.create(input_data)
     render json: @appointment
   end
 
   def update
+    if params
+      puts 'params exist... using params...'
+      input_data = appointment_params
+    else
+      puts 'params don\'t exist trying the request body...'
+      puts "Request body: #{request.body.read}"
+      input_data = JSON.parse(request.body.read)
+    end
     @appointment = Appointment.find(params[:id])
-    @appointment.update(:date_time => params[:date_time], :neighborhood => params[:neighborhood], :product_id => params[:product_id], :user_id => params[:user_id])
+    @appointment.update(input_data)
     render json: @appointment
   end
 
   def destroy
+    @appointment = Appointment.find(params[:id])
+    @appointment.destroy
+    render json: @appointment
   end
 
   private
   def appointment_params
-    params.require(:appointment).permit(:date_time, :neighborhood, :product_id, :user_id)
+    params.permit(:date_time, :neighborhood, :product_id, :user_id)
   end
 end
