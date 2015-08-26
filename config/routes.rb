@@ -1,4 +1,14 @@
 Rails.application.routes.draw do
+  get 'api/appointments' => 'appointments#index'
+
+  get 'appointments/find'
+
+  get 'appointments/create'
+
+  get 'appointments/update'
+
+  get 'appointments/destroy'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
