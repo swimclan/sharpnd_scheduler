@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
   
+  get 'login' => 'users#login'
+
+  get 'register' => 'users#register'
+
   root 'home#index'
 
   get 'keys' => 'keys#index'

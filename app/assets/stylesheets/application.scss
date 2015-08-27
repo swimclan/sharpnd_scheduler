@@ -1,0 +1,76 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ *= require bootstrap.min 
+ *= require jquery-ui
+ */
+/*==================================
+		M A I N  S T Y L E S
+===================================*/
+.form-item {
+	height: 30rem;
+}
+
+/*==================================
+T I M E  S L I D E R   S T Y L E S
+===================================*/
+
+/*.slider-container {
+	border: 0;
+ 	background-color: #ddd;
+ }*/
+
+/*#time #time-slider {
+	height: 6rem;
+
+	border-color: #aaa;
+	span {
+		background-color: red;
+		position: relative;
+		display: block;
+		width: 1rem;
+		height: 6rem;
+	}
+}*/
+
+/*==================================
+	C A L E N D A R   S T Y L E S
+===================================*/
+/*table.ui-datepicker-calendar {
+	width: 100%;
+	thead th {
+		text-align: center;
+	}
+	tbody td {
+		text-align: center;
+		border: 1px solid #ddd;
+	}
+}
+
+.ui-datepicker-calendar tbody td:hover {
+	background-color: #ddd;
+}
+
+.ui-datepicker-calendar tbody td.ui-state-disabled:hover {
+	background-color: transparent;
+}*/
+
+/*==================================
+	T A B   S T Y L E S
+===================================*/
+
+/*input[type=radio] {
+	opacity: 0;
+	visibility: hidden;
+}*/

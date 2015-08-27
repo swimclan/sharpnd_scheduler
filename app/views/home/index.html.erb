@@ -1,1 +1,90 @@
-<h1>Welcome to Backbone!</h1>
+<div class="row form-item">
+	<div class="col-md-6 col-md-offset-3">
+		<h4>Select Your Neighborhood</h4>
+		<form class="toggle">
+			<div id="neighborhood-radio">
+				<input type="radio" id="brooklyn" name="neighborhood" value="brooklyn"><label for="brooklyn">Brooklyn</label>
+				<input type="radio" id="manhattan" name="neighborhood" value="manhattan"><label for="manhattan">Manhattan</label>
+				<input type="radio" id="queens" name="neighborhood" value="queens"><label for="queens">Queens</label>
+			</div>
+		</form>
+	</div>
+</div>
+
+<div class="row form-item">
+	<div id="service" class="col-md-6 col-md-offset-3">
+		<h4>Select Your Service</h4>
+		<form class="toggle">
+			<div id="service-radio"></div>
+		</form>
+  	</div>
+</div>
+
+<div class="row form-item">
+	<div id="information" class="col-md-6 col-md-offset-3">
+		<h4>Your Information</h4>
+		<div id="information-radio">
+			<form>
+				<input type="radio" id="new-user-radio" name="account" value="newuser" checked="checked"><label for="new-user-radio">I am new</label>
+				<input type="radio" id="login-radio" name="account" value="login"><label for="login-radio">I have an account</label>	
+			</form>	
+		</div>
+		<div id="auth-form"></div>	
+
+	</div>
+</div>
+
+<div class="row form-item">
+	<div id="date" class="col-md-6 col-md-offset-3">
+		<h4>Select Your Date</h4>
+		<div id="datepicker"></div>
+
+	</div>
+</div>
+
+<div class="row form-item">
+	<div id="time" class="col-md-6 col-md-offset-3">
+		<h4>Select Your Time</h4>
+		<p><span id="selected-time"></span></p>
+		<div class="slider-container">
+			<div id="time-slider"></div>
+		</div>
+
+	</div>
+</div>
+
+<div class="row form-item">
+	<div id="send" class="col-md-6 col-md-offset-3">
+		<button>Send Request!</button>
+
+
+	</div>
+</div>
+
+<script type="text/template" id="productTemplate">
+   <input id="<%%= product_name.split(' ').join('') %>" name="product_id" value="<%%= id %>" type="radio" name="radio"><label for="<%%= product_name.split(' ').join('') %>"><%%= product_name %></label>
+</script>
+
+<script type="text/template" id="login-form">
+	<form>
+		<input type="email" id="login-email-field" name="email_address" placeholder="Email Address">
+		<input type="password" id="login-password-field" name="password" placeholder="Password">
+		<button id="login-button">Login</button>
+	</form>
+</script>
+
+<script type="text/template" id="register-form">
+	<form>
+		<input type="email" id="email-field" name="email_address" placeholder="Email Address">
+		<input type="password" id="password-field" name="password" placeholder="Password">
+		<input type="text" id="first-name-field" name="first_name" placeholder="First Name">
+		<input type="text" id="last-name-field" name="last_name" placeholder="Last Name">
+		<input type="text" id="phone-field" name="phone_number" placeholder="Phone Number">
+		<input type="text" id="address1-field" name="address_1" placeholder="Address 1">
+		<input type="text" id="address2-field" name="address_2" placeholder="Address 2">
+		<input type="text" id="city-field" name="city" placeholder="City">
+		<input type="text" id="state-field" name="state" placeholder="State">
+		<input type="text" id="zip-field" name="zip" placeholder="Zip Code">
+		<button id="register-button">Register</button>
+	</form>
+</script>
