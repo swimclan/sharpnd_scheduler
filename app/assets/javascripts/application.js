@@ -192,7 +192,7 @@ function registerAjax(e) {
 			$('#register-response').html(data.responseText);
 			$('#new-user-radio').attr('checked', '');
 			$('#login-radio').attr('checked', 'checked');
-			
+
 
 		},
 		error: function(err) {
@@ -311,15 +311,8 @@ $(document).ready(function() {
 		$(this).addClass('active');
 	});
 
+	
 	// move user to each form item after click
-	$('.select-item, button').on('click', function(e) {
-		var $current_row = $(this);
-		var distance_to_next_row = $current_row.next('.row').offset().top;
-		console.log('Distance to next row is: ' + distance_to_next_row);
-		$('html, body').animate({
-			scrollTop: distance_to_next_row
-		}, 750, 'swing');
-
-	});
+	
 
 }); // end of document.ready

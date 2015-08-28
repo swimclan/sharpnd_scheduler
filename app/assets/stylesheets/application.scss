@@ -39,6 +39,10 @@
 	padding-left: 1rem;
 }
 
+form {
+	margin-top: 6rem;
+}
+
 #registration-fields>input:focus, #login-fields>input:focus {
 	outline: 0;
 }
@@ -114,17 +118,6 @@ label.toggle-button {
 
 }
 
-#time-slider {
-	border: 1px solid #555555;
-	height: 2rem;
-	width: 80%;
-	margin: 0 auto;
-}
-
-p.time-label {
-	text-align: center;
-}
-
 .ui-helper-hidden-accessible {
 	visibility: hidden;
 }
@@ -138,23 +131,34 @@ p.time-label {
 T I M E  S L I D E R   S T Y L E S
 ===================================*/
 
-/*.slider-container {
-	border: 0;
- 	background-color: #ddd;
- }*/
+.slider-container {
+ 	background-color: #2B2B2B;
+ 	height: 2rem;
+ 	width: 80%;
+ 	margin: 4rem auto 0 auto;
+ }
 
-/*#time #time-slider {
+#time #time-slider {
 	height: 6rem;
-
 	border-color: #aaa;
 	span {
-		background-color: red;
+		background-color: #797979;
 		position: relative;
 		display: block;
-		width: 1rem;
+		width: 3rem;
 		height: 6rem;
+		top: -2.2rem;
 	}
-}*/
+	span:focus {
+		outline: none;
+	}
+}
+
+p#selected-time {
+	text-align: center;
+	font-size: 3rem;
+	margin-top: 2rem;
+}
 
 /*==================================
 	C A L E N D A R   S T Y L E S
