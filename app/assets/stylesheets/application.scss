@@ -13,13 +13,125 @@
  *= require_tree .
  *= require_self
  *= require bootstrap.min 
- *= require jquery-ui
+ 
  */
 /*==================================
 		M A I N  S T Y L E S
 ===================================*/
-.form-item {
-	height: 30rem;
+.sharpnd-body {
+	background-color: #2F2F2F;
+	color: #E9E9E9;
+	font-family: 'Work Sans', sans-serif;
+	font-weight: 100;
+	text-transform: uppercase;
+}
+
+#registration-fields>input, #login-fields>input, .styled-form>input {
+	width: 100%;
+	height: 5rem;
+	background-color: transparent;
+	border-top: 0;
+	border-left: 0;
+	border-right: 0;
+	border-bottom: 1px solid #5E5E5E;
+	text-transform: uppercase;
+	font-size: 2rem;
+	padding-left: 1rem;
+}
+
+#registration-fields>input:focus, #login-fields>input:focus {
+	outline: 0;
+}
+
+#login-button, #register-button, #send-button {
+	width: 100%;
+	font-size: 3rem;
+	text-transform: uppercase;
+	color: #DCDCDC;
+	margin-top: 2rem;
+	height: 5rem;
+	background-color: transparent;
+	border: 1px solid #DCDCDC;
+}
+
+.select-item, .auth-item {
+	height: 20rem;
+}
+
+.item-heading {
+	font-size: 6rem;
+	text-align: center;
+	border-bottom: 1px solid #555555;
+}
+
+.row {
+	padding-bottom: 10rem;
+	background-color: transparent;
+}
+
+.header {
+	padding-bottom: 0;
+	height: 10rem;
+}
+
+.toggle {
+	text-align: center;
+}
+
+label.toggle-button {
+	background-color: transparent;
+}
+
+.ui-button-text {
+	font-size: 2rem;
+	padding: 1rem;
+	font-weight: 100;
+}
+
+.ui-datepicker-inline, .ui-datepicker-calendar {
+	width: 100%;
+	td {
+		border: 1px solid #5E5E5E;
+		width: 3rem;
+		height: 6rem;
+		text-align: center;
+		font-size: 2.2rem;
+		font-weight: 100;
+		a {
+			color: #EDEDED;
+			text-decoration: none;
+		}
+	}
+	td.ui-state-disabled {
+		color: #5E5E5E;
+	}
+	td:hover {
+		border-bottom-color: #EDEDED;
+	}
+	td.ui-state-disabled:hover {
+		border-bottom-color: #5E5E5E;
+	}
+
+}
+
+#time-slider {
+	border: 1px solid #555555;
+	height: 2rem;
+	width: 80%;
+	margin: 0 auto;
+}
+
+p.time-label {
+	text-align: center;
+}
+
+.ui-helper-hidden-accessible {
+	visibility: hidden;
+}
+
+.active {
+	background-color: #DCDCDC;
+	color: #202020;
 }
 
 /*==================================

@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   
-  get 'login' => 'users#login'
+  post 'login' => 'users#login', :defaults => { :format => 'json' }
 
-  get 'register' => 'users#register'
+  post 'register' => 'users#register', :defaults => { :format => 'json' }
 
   root 'home#index'
 

@@ -127,6 +127,91 @@ function get_time_string(hours) {
     return hours + ':00'+ ' ' + suffix;
 }
 
+$.fn.serializeObject = function()
+{
+    var o = {};
+    var a = this.serializeArray();
+    $.each(a, function() {
+        if (o[this.name] !== undefined) {
+            if (!o[this.name].push) {
+                o[this.name] = [o[this.name]];
+            }
+            o[this.name].push(this.value || '');
+        } else {
+            o[this.name] = this.value || '';
+        }
+    });
+    return o;
+};
+
+function register_button_handler() {
+	$('#auth-form').unbind('click', loginAjax);
+	$('#auth-form').on('click', 'button', registerAjax);
+}
+
+function login_button_handler() {
+	$('#auth-form').unbind('click', registerAjax);
+	$('#auth-form').on('click', 'button', loginAjax);	
+}
+
+
+function loginAjax(e) {
+	console.log('login button clicked');
+	var user_login_data = $('#login-fields').serializeObject();
+	$.ajax({
+		url: '/login',
+		type: 'POST',
+		dataType: 'json',
+		data: user_login_data,
+		success: function(data) {
+			console.log('data respose from login: ');
+			console.log(data);
+			render_user_data(data);
+		},
+		error: function(err) {
+			console.log('error respose from login: ');
+			console.log(err);
+			$('#login-response').html(err.responseText);
+		}
+	});
+}
+
+function registerAjax(e) {
+	e.preventDefault();
+	var new_user_data = $('#registration-fields').serializeObject();
+	console.log(new_user_data);
+	$.ajax({
+		url: '/register',
+		type: 'POST',
+		dataType: 'json',
+		data: new_user_data,
+		success: function(data) {
+			console.log('data respose from registration: ');
+			console.log(data);
+			render_user_data(data);
+			$('#register-response').html(data.responseText);
+			$('#new-user-radio').attr('checked', '');
+			$('#login-radio').attr('checked', 'checked');
+			
+
+		},
+		error: function(err) {
+			console.log('error respose from registration: ');
+			console.log(err);
+			$('#register-response').html(err.responseText);
+		}
+	});
+}
+
+function render_user_data(data) {
+	var logged_in_user_template = $('#logged-in-user').html();
+	var render_logged_in_user_template = _.template(logged_in_user_template);
+	// render a user data form with logged in user information
+	$('#auth-form').html(render_logged_in_user_template(data));
+	$('#user-fields').addClass('styled-form');
+}
+
+
 
 
 
@@ -134,31 +219,12 @@ function get_time_string(hours) {
 		M A I N,  T R I G G E R S  &  E V E N T S 
 ----------------------------------------------------*/
 $(document).ready(function() {
-	//render the neighborhood radio options
-	$(function() { $('#neighborhood-radio').buttonset(); });
+	//draw the neighborhood radio options
+	app.$neighborhood_radio = $('#neighborhood-radio');
+	$(function() { app.$neighborhood_radio .buttonset(); });
 
-	//render the login/register toggle radio options
+	//draw the login/register toggle radio options
 	$(function() { $('#information-radio').buttonset(); });
-
-	// login/register form templates
-	app.login_form_template = $('#login-form').html();
-	app.register_form_template = $('#register-form').html();
-
-	//render the default new user template
-	app.renderedLoginForm = _.template(app.login_form_template)({});
-	app.renderedRegisterForm = _.template(app.register_form_template)({});
-	$('#auth-form').html(app.renderedRegisterForm);
-	$(function() { $("#phone-field").mask("(999) 999-9999") });
-	
-	//toggle the login/register forms
-	$('#new-user-radio').on('click', function(e) {
-		$('#auth-form').html(app.renderedRegisterForm);
-		//mask the phone input form field for 10 digit number
-		$(function() { $("#phone-field").mask("(999) 999-9999") });
-	});
-	$('#login-radio').on('click', function(e) {
-		$('#auth-form').html(app.renderedLoginForm);
-	});
 
 	//draw the date picker	
 	$('#datepicker').datepicker({
@@ -180,12 +246,45 @@ $(document).ready(function() {
 	$('#time-slider').slider("option", "max", 21);
 	$('#time-slider').slider("option", "step", 1);
 
+	// login/register form templates
+	app.login_form_template = $('#login-form').html();
+	app.register_form_template = $('#register-form').html();
+
+	//render the default new user template
+	app.renderedLoginForm = _.template(app.login_form_template)({});
+	app.renderedRegisterForm = _.template(app.register_form_template)({
+		email_address: '',
+		password: '',
+		password_confirmation: '',
+		first_name: '',
+		last_name: '',
+		address_1: '',
+		address_2: '',
+		city: '',
+		state: '',
+		zip: '',
+		phone_number: ''
+	});
+	$('#auth-form').html(app.renderedRegisterForm);
+	$(function() { $("#phone-field").mask("(999) 999-9999") });
+	register_button_handler();
+	
+	//toggle the login/register forms
+	$('#new-user-radio').on('click', function(e) {
+		$('#auth-form').html(app.renderedRegisterForm);
+		//mask the phone input form field for 10 digit number
+		$(function() { $("#phone-field").mask("(999) 999-9999") });
+		register_button_handler();
+	});
+	$('#login-radio').on('click', function(e) {
+		$('#auth-form').html(app.renderedLoginForm);
+		login_button_handler();
+	});
 
 	//generate random api keys based on time since epoch
 	$('#key-generate').on('click', function(e) {
-		e.preventDefault();
+		e.preventDefault();	
 		var time_code = new Date().getTime();
-		var random
 		$('#api-key').val(window.btoa(time_code.toString()));
 	});
 
@@ -195,6 +294,32 @@ $(document).ready(function() {
 	//get the products kicked to the DOM
 	app.active.productCollectionView = new app.blueprints.productCollectionView({
 		collection: app.active.productCollection
+	});
+
+	// ============END OF PAGE LOAD ITEMS=============
+
+	//make the on click events work on the toggle buttons
+	$('.toggle').on('click', 'label', function(e) {
+		$(this).addClass('active');
+		$(this).siblings('label').removeClass('active');
+	});
+
+	//make the selected calendar date highlight on click
+	$('.ui-datepicker-calendar td').not('.ui-datepicker-unselectable').on('click', function(e) {
+		console.log('calendar item was clicked');
+		$(this).siblings('td').removeClass('active');
+		$(this).addClass('active');
+	});
+
+	// move user to each form item after click
+	$('.select-item, button').on('click', function(e) {
+		var $current_row = $(this);
+		var distance_to_next_row = $current_row.next('.row').offset().top;
+		console.log('Distance to next row is: ' + distance_to_next_row);
+		$('html, body').animate({
+			scrollTop: distance_to_next_row
+		}, 750, 'swing');
+
 	});
 
 }); // end of document.ready
