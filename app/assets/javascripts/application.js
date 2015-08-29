@@ -23,6 +23,8 @@
 var app = app || {};
 app.blueprints = app.blueprints || {};
 app.active = app.active || {};
+// initialize appointment
+app.appoinment = app.appointment || {};
 
 /*----------------------------------------------------
 		M O D E L  C O N S T R U C T O R S
@@ -35,6 +37,7 @@ app.blueprints.userModel = Backbone.Model.extend({
 
 app.blueprints.appointmentModel = Backbone.Model.extend({
 	initialize: function() {
+		console.log('An appointment model has been instantiated...')
 
 	}
 });
@@ -52,8 +55,14 @@ app.blueprints.productModel = Backbone.Model.extend({
 	C O L L E C T I O N  C O N S T R U C T O R S
 ----------------------------------------------------*/
 app.blueprints.appointmentCollection = Backbone.Collection.extend({
+	url: 'api/appointments',
+	model: app.blueprints.appointmentModel,
 	initialize: function() {
-
+		console.log('An appointment collection has been instantiated...');
+		this.fetch();
+		this.on('change', function() {
+			this.fetch();
+		});
 	}
 });
 
@@ -169,6 +178,7 @@ function loginAjax(e) {
 			console.log('data respose from login: ');
 			console.log(data);
 			render_user_data(data);
+			set_current_section($('#auth-form'));
 			auto_scroll();
 		},
 		error: function(err) {
@@ -190,11 +200,11 @@ function registerAjax(e) {
 		data: new_user_data,
 		success: function(data) {
 			console.log('data respose from registration: ');
-			console.log(data);
 			render_user_data(data);
 			$('#register-response').html(data.responseText);
 			$('#new-user-radio').attr('checked', '');
 			$('#login-radio').attr('checked', 'checked');
+			set_current_section($('#auth-form'));
 			auto_scroll();
 
 
@@ -217,29 +227,46 @@ function render_user_data(data) {
 
 function auto_scroll() {
 	var $next_section = $('#' + app.sections[app.current_section]);
-	console.log('selector clicked, moving to ' + app.sections[app.current_section]);
 	var distance_to_next = $next_section.offset().top;
 	$('html, body').animate({
 		scrollTop: distance_to_next
 	}, 400, 'swing');
-	app.current_section += 1;
 }
 
 function radio_scroll_handler(section) {
 	// move user to each form item after click
 	$('#'+section+'-radio').children('input').on('change', function(e) {
-		console.log('radio has been changed');
+		set_current_section($(this));
 		auto_scroll();
 	});
 }
+
+function set_current_section($selector) {
+	app.current_section = app.sections.indexOf($selector.parents('.row').attr('id')) + 1;
+	return true;
+}
+
+function get_appointment_model() {
+	var appointment = {};
+	appointment.neighborhood = $('#neighborhood-radio').children('input:checked').val();
+	appointment.product_id = $('#service-radio').children('input:checked').val();
+	appointment.user_id = $('#userid-field').val();
+	var date = $('#date-selected').val().split('/');
+	var time = $('#time-slider').slider("value");
+	appointment.date_time = new Date(date[2], date[0] - 1, date[1], time, 0, 0);
+	console.log(appointment);
+	return appointment;
+}
+
 
 
 /*----------------------------------------------------
 		M A I N,  T R I G G E R S  &  E V E N T S 
 ----------------------------------------------------*/
 $(document).ready(function() {
+
 	// all section ids
-	app.sections = ['neighborhood', 'service', 'information', 'date', 'time'];
+	app.sections = ['neighborhood', 'product', 'information', 'date', 'time'];
 
 	//initialize current section
 	app.current_section = 1;
@@ -258,6 +285,8 @@ $(document).ready(function() {
 	$('#datepicker').datepicker({
 		minDate: new Date(),
 		onSelect: function(date) {
+			$('#date-selected').val(date);
+			set_current_section($(this));
 			auto_scroll();
 		},
 		prevText: '<span class="glyphicon glyphicon-circle-arrow-left" aria-hidden="true"></span>',
@@ -322,6 +351,11 @@ $(document).ready(function() {
 		$('#api-key').val(window.btoa(time_code.toString()));
 	});
 
+	// on click of the submit appointment collect all the form data
+	$('#send-button').on('click', function(e) {
+		app.active.appointmentCollection.create(get_appointment_model());
+	});
+
 	// ============BACKBONE TRIGGERS=================
 		// instantiate a product collection
 	app.active.productCollection = new app.blueprints.productCollection();
@@ -329,6 +363,7 @@ $(document).ready(function() {
 	app.active.productCollectionView = new app.blueprints.productCollectionView({
 		collection: app.active.productCollection
 	});
+	app.active.appointmentCollection = new app.blueprints.appointmentCollection();
 
 	// ============END OF PAGE LOAD ITEMS=============
 
