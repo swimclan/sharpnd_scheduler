@@ -1,7 +1,7 @@
 <div id="neighborhood" class="row">
 	<div class="col-md-8 col-md-offset-2">
 		<h4 class="item-heading">Your Neighborhood</h4>
-		<form class="toggle">
+		<form class="toggle selector">
 			<div id="neighborhood-radio">
 				<input type="radio" id="brooklyn" name="neighborhood" value="brooklyn"><label for="brooklyn">Brooklyn</label>
 				<input type="radio" id="manhattan" name="neighborhood" value="manhattan"><label for="manhattan">Manhattan</label>
@@ -14,7 +14,7 @@
 <div id="service" class="row">
 	<div class="col-md-8 col-md-offset-2">
 		<h4 class="item-heading">Your Service</h4>
-		<form class="toggle">
+		<form class="toggle selector">
 			<div id="service-radio"></div>
 		</form>
   	</div>
@@ -24,7 +24,7 @@
 	<div class="col-md-8 col-md-offset-2">
 		<h4 class="item-heading">Your Information</h4>
 		<div id="information-radio">
-			<form class="toggle">
+			<form class="toggle auth-selector">
 				<input type="radio" id="new-user-radio" name="account" value="newuser" checked="checked"><label for="new-user-radio" class="active">I am new</label>
 				<input type="radio" id="login-radio" name="account" value="login"><label for="login-radio">I have an account</label>	
 			</form>	
@@ -46,6 +46,11 @@
 	<div class="col-md-8 col-md-offset-2">
 		<h4 class="item-heading">Your Time</h4>
 		<p id="selected-time"></p>
+		<div class="timeline">
+		<span class="time-of-day" id="morning">morning</span>
+		<span class="time-of-day" id="afternoon">afternoon</span>
+		<span class="time-of-day" id="evening">evening</span>
+		</div>
 		<div class="slider-container">
 			<div id="time-slider"></div>
 		</div>

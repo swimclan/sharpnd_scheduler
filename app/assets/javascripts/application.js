@@ -91,6 +91,8 @@ app.blueprints.productCollectionView = Backbone.View.extend({
 		});
 		//draw the services buttonset
 		$(function() { $('#service-radio').buttonset(); });
+		// set the service selector scroll handler
+		radio_scroll_handler('service');
 	}
 });
 
@@ -167,6 +169,7 @@ function loginAjax(e) {
 			console.log('data respose from login: ');
 			console.log(data);
 			render_user_data(data);
+			auto_scroll();
 		},
 		error: function(err) {
 			console.log('error respose from login: ');
@@ -192,6 +195,7 @@ function registerAjax(e) {
 			$('#register-response').html(data.responseText);
 			$('#new-user-radio').attr('checked', '');
 			$('#login-radio').attr('checked', 'checked');
+			auto_scroll();
 
 
 		},
@@ -211,14 +215,35 @@ function render_user_data(data) {
 	$('#user-fields').addClass('styled-form');
 }
 
+function auto_scroll() {
+	var $next_section = $('#' + app.sections[app.current_section]);
+	console.log('selector clicked, moving to ' + app.sections[app.current_section]);
+	var distance_to_next = $next_section.offset().top;
+	$('html, body').animate({
+		scrollTop: distance_to_next
+	}, 400, 'swing');
+	app.current_section += 1;
+}
 
-
+function radio_scroll_handler(section) {
+	// move user to each form item after click
+	$('#'+section+'-radio').children('input').on('change', function(e) {
+		console.log('radio has been changed');
+		auto_scroll();
+	});
+}
 
 
 /*----------------------------------------------------
 		M A I N,  T R I G G E R S  &  E V E N T S 
 ----------------------------------------------------*/
 $(document).ready(function() {
+	// all section ids
+	app.sections = ['neighborhood', 'service', 'information', 'date', 'time'];
+
+	//initialize current section
+	app.current_section = 1;
+
 	//draw the neighborhood radio options
 	app.$neighborhood_radio = $('#neighborhood-radio');
 	$(function() { app.$neighborhood_radio .buttonset(); });
@@ -226,9 +251,17 @@ $(document).ready(function() {
 	//draw the login/register toggle radio options
 	$(function() { $('#information-radio').buttonset(); });
 
+	// set the neighborhood selector scroll handler
+	radio_scroll_handler('neighborhood');
+
 	//draw the date picker	
 	$('#datepicker').datepicker({
-		minDate: new Date()
+		minDate: new Date(),
+		onSelect: function(date) {
+			auto_scroll();
+		},
+		prevText: '<span class="glyphicon glyphicon-circle-arrow-left" aria-hidden="true"></span>',
+		nextText: '<span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span>'
 	});
 
 	//draw the time slider and bind slide event
@@ -279,6 +312,7 @@ $(document).ready(function() {
 	$('#login-radio').on('click', function(e) {
 		$('#auth-form').html(app.renderedLoginForm);
 		login_button_handler();
+		// auto_scroll_handler();
 	});
 
 	//generate random api keys based on time since epoch
@@ -304,15 +338,5 @@ $(document).ready(function() {
 		$(this).siblings('label').removeClass('active');
 	});
 
-	//make the selected calendar date highlight on click
-	$('.ui-datepicker-calendar td').not('.ui-datepicker-unselectable').on('click', function(e) {
-		console.log('calendar item was clicked');
-		$(this).siblings('td').removeClass('active');
-		$(this).addClass('active');
-	});
-
-	
-	// move user to each form item after click
-	
 
 }); // end of document.ready
