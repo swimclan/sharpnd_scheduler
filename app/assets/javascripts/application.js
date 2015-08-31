@@ -322,7 +322,4 @@ $(document).ready(function() {
 		$(this).siblings('label').removeClass('active');
 	});
 
-	//make sure the generate key in api keys admin works
-	set_key_generate_handler()
-
 }); // end of document.ready

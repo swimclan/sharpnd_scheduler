@@ -54,7 +54,12 @@
 	<%= button_tag "Generate!", :type => 'button', :id => 'key-generate' %>
 	<%= f.submit 'Save', :class => 'save-key' %>
 	<%= f.check_box :admin %>
-	<%= f.label :admin, 'Admin?' %>
+	<%= f.label :admin, 'Is admin?' %>
 <% end %>
 </div>
 </div>
+
+<script type="text/javascript">
+	//make sure the generate key in api keys admin works
+	set_key_generate_handler()
+</script>

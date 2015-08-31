@@ -23,9 +23,9 @@ app.blueprints.appointmentCollection = Backbone.Collection.extend({
 	initialize: function() {
 		console.log('An appointment collection has been instantiated...');
 		this.fetch();
-		this.on('change', function() {
-			this.fetch();
-		});
+		// this.on('change', function() {
+		// 	this.fetch();
+		// });
 	}
 });
 
