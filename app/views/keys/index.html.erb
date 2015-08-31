@@ -1,18 +1,44 @@
-<h1>API Key Manager</h1>
-<h4>Current API Key List</h4>
-<table>
+<div class="row">
+<div class="col-md-6 col-md-offset-3">
+<header><h1 class="admin-heading">Site Administration</h1>
+<nav class="admin-nav">
+	<ul>
+		<li><a href="/admin">Admin Home</a></li>
+		<li><a href="/keys">API Keys</a></li>
+	</ul>
+</nav>
+</header>
+</div>
+</div>
+<div class="row">
+<div class="col-md-6 col-md-offset-3">
+<h4 class="key-subhead">API Key Manager</h4>
+</div>
+</div>
+
+<div class="row">
+<div class="col-md-6 col-md-offset-3">
+<table id="key-manager" class="table">
 <thead>
-<tr><th>API Keys</th></tr>
+<tr><th>API Keys</th>
+<th>Admin?</th>
+<th>Delete?</th>
+</tr>
 </thead>
 <tbody>
 <% @keys.each do |key| %>
 
 <tr>
-<td><%= key.secret_key %></td>
+<td class="each-api-key"><%= key.secret_key %></td>
 <td>
-<%= form_for :key, url: { :action => 'destroy' }, :method => 'delete' do |f| %>
+<% if key.admin == true %>
+	Admin
+<% end %>
+</td>
+<td>
+<%= form_for :key, url: { :action => 'destroy' }, :html => { :class => 'delete-key-form' }, :method => 'delete' do |f| %>
 	<%= f.hidden_field :id, :value => key.id %>
-	<%= f.submit 'Delete' %>
+	<%= f.submit 'Delete', :class => 'delete-key' %>
 <% end %>
 
 </td>
@@ -22,10 +48,13 @@
 </tbody>
 </table>
 
-<hr>
 
 <%= form_for :key, url: { :action => 'create' } do |f| %>
-	<%= f.text_field :secret_key, :id => 'api-key', :placeholder => 'Generate a new key' %>
-	<%= button_tag "Generate!", :id => 'key-generate' %>
-	<%= f.submit 'Save' %>
+	<%= f.text_field :secret_key, :id => 'api-key-field', :placeholder => 'Generate a new key', :value => '' %>
+	<%= button_tag "Generate!", :type => 'button', :id => 'key-generate' %>
+	<%= f.submit 'Save', :class => 'save-key' %>
+	<%= f.check_box :admin %>
+	<%= f.label :admin, 'Admin?' %>
 <% end %>
+</div>
+</div>

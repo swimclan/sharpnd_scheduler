@@ -6,7 +6,11 @@ Rails.application.routes.draw do
 
   root 'home#index'
 
+  get 'admin' => 'admin#index'
+
   get 'keys' => 'keys#index'
+
+  get 'admin/noaccess' => 'admin#noaccess'
 
   post 'keys' => 'keys#create'
 

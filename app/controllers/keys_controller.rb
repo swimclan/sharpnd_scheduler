@@ -1,4 +1,5 @@
 class KeysController < ApplicationController
+  
   def index
   	@keys = Key.all
   	render :index
@@ -22,7 +23,7 @@ class KeysController < ApplicationController
   private
 
   def key_params
-  	params.require(:key).permit(:secret_key)
+  	params.require(:key).permit(:secret_key, :admin)
   end
 
 end
