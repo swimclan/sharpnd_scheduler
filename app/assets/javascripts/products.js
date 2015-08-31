@@ -74,9 +74,11 @@ app.blueprints.productModelView = Backbone.View.extend({
 });
 
 $(document).ready(function() {
-
+	console.log('-------------------------------');
+	console.log('I am in doc.ready products.js..');
+	console.log('-------------------------------');	
 	/*----------------------------------------------------
-					I N S T A N T I A T I O N
+			P R O D U C T  I N S T A N T I A T I O N
 	----------------------------------------------------*/
 	// instantiate a product collection
 	app.active.productCollection = new app.blueprints.productCollection();
@@ -84,5 +86,5 @@ $(document).ready(function() {
 	app.active.productCollectionView = new app.blueprints.productCollectionView({
 		collection: app.active.productCollection
 	});
+});
 
-}); // end document.ready

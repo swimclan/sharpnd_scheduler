@@ -62,6 +62,7 @@
 <div class="row">
 	<div id="send" class="col-md-8 col-md-offset-2">
 		<button id="send-button">Send Request!</button>
+		<p id="send-response"></p>
 	</div>
 </div>
 
@@ -80,17 +81,17 @@
 
 <script type="text/template" id="register-form">
 	<form id="registration-fields">
-		<input type="email" id="email-field" name="email_address" value="<%%= email_address %>" placeholder="Email Address">
-		<input type="password" id="password-field" name="password" value="<%%= password %>" placeholder="Password">
-		<input type="password" id="password-confirmation-field" name="password_confirmation" value="<%%= password_confirmation %>" placeholder="Confirm Password">
-		<input type="text" id="first-name-field" name="first_name" value="<%%= first_name %>" placeholder="First Name">
-		<input type="text" id="last-name-field" name="last_name" value="<%%= last_name %>" placeholder="Last Name">
-		<input type="text" id="phone-field" name="phone_number" value="<%%= phone_number %>" placeholder="Phone Number">
-		<input type="text" id="address1-field" name="address_1" value="<%%= address_1 %>" placeholder="Address 1">
-		<input type="text" id="address2-field" name="address_2" value="<%%= address_2 %>" placeholder="Address 2">
-		<input type="text" id="city-field" name="city" value="<%%= city %>" placeholder="City">
-		<input type="text" id="state-field" name="state" value="<%%= state %>" placeholder="State">
-		<input type="text" id="zip-field" name="zip" value="<%%= zip %>" placeholder="Zip Code">
+		<input type="email" id="email-field" name="email_address" placeholder="Email Address">
+		<input type="password" id="password-field" name="password" placeholder="Password">
+		<input type="password" id="password-confirmation-field" name="password_confirmation" placeholder="Confirm Password">
+		<input type="text" id="first-name-field" name="first_name" placeholder="First Name">
+		<input type="text" id="last-name-field" name="last_name" placeholder="Last Name">
+		<input type="text" id="phone-field" name="phone_number" placeholder="Phone Number">
+		<input type="text" id="address1-field" name="address_1" placeholder="Address 1">
+		<input type="text" id="address2-field" name="address_2" placeholder="Address 2">
+		<input type="text" id="city-field" name="city" placeholder="City">
+		<input type="text" id="state-field" name="state" placeholder="State">
+		<input type="text" id="zip-field" name="zip" placeholder="Zip Code">
 	</form>
 	<button id="register-button">Register</button>
 	

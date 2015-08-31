@@ -1,5 +1,5 @@
 class KeysController < ApplicationController
-  
+  before_filter :api_admin_authorize, :only => :index
   def index
   	@keys = Key.all
   	render :index

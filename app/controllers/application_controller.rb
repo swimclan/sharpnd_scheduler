@@ -21,9 +21,9 @@ class ApplicationController < ActionController::Base
     @key = Key.find_by(:secret_key => api_cookie)
     if @key.nil? == true
       # redirect_to '/keys/noaccess'
-      redirect_to '/keys/noaccess'
+      redirect_to '/admin/noaccess'
     elsif @key.nil? == false && @key.admin == false
-      redirect_to '/keys/noaccess'
+      redirect_to '/admin/noaccess'
     end
   end
 end
