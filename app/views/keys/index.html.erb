@@ -53,7 +53,7 @@
 	<%= f.text_field :secret_key, :id => 'api-key-field', :placeholder => 'Generate a new key', :value => '' %>
 	<%= button_tag "Generate!", :type => 'button', :id => 'key-generate' %>
 	<%= f.submit 'Save', :class => 'save-key' %>
-	<%= f.check_box :admin %>
+	<%= f.check_box :admin, :class => 'admin-check' %>
 	<%= f.label :admin, 'Is admin?' %>
 <% end %>
 </div>
