@@ -1,28 +1,22 @@
-== README
+# Sharpnd Scheduler
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is an application that takes reservations for the online grooming service Sharpnd.com.  The app allows a user to select a neighborhood they live in, a service they are interested in, takes their information, allows them to log in, select a date and a time for the appointment.
 
-Things you may want to cover:
+Bundled with the application are two RESTful APIs: one for listing out the current set of appointments and one for the current products and services offered by Sharpnd.
 
-* Ruby version
+## Installation Instructions
 
-* System dependencies
+The Sharpnd Scheduler is [reposited on GitHub](https://github.com/swimclan/sharpnd_scheduler).
 
-* Configuration
+Here are the steps needed to install the application on your local machine or on a webserver:
 
-* Database creation
+1. Clone down the repository from GitHub using: `git clone https://github.com/swimclan/sharpnd_scheduler`
 
-* Database initialization
+2. Its a Ruby on Rails application so you will need to run the following rake commands
 
-* How to run the test suite
+-- `rake db:create`
+-- `rake db:migrate`
 
-* Services (job queues, cache servers, search engines, etc.)
+These commands will create the appointments table, the users table and the products table.
 
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+3. 
