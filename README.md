@@ -18,7 +18,7 @@ Here are the steps needed to install the application on your local machine or on
 
 	- `rake db:create` <-- Creates the database
 	- `rake db:migrate` <-- Generates the tables and fields
-	- `rake db:seed` <-- Inserts the first default API key into the table
+	- `rake db:seed` <-- Inserts the first default API key into the table and seeds the products table with products
 
 	- These commands will create the appointments table, the users table and the products table.*
 
