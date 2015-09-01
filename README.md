@@ -89,7 +89,7 @@ An API that delivers all the data for each appointment including the appointment
 An API that delivers all the data for each appointment including the appointment date and time, the user ID of the user, the product ID of the service and a created and modified date.
 
 #### API Methods
-* Get all appointments: `/api/products` (http GET)
+* Get all products: `/api/products` (http GET)
 * Get a single product `/api/products/<id>` (http GET)
 	- `<id>` is the id of the product to get
 * Create a new product: `/api/products` (http POST)
