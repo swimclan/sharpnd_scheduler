@@ -14,8 +14,8 @@ Here are the steps needed to install the application on your local machine or on
 
 2. Its a Ruby on Rails application so you will need to run the following rake commands
 
--- `rake db:create`
--- `rake db:migrate`
+- `rake db:create`
+- `rake db:migrate`
 
 These commands will create the appointments table, the users table and the products table.
 
