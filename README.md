@@ -14,12 +14,12 @@ Here are the steps needed to install the application on your local machine or on
 
 2. Its a Ruby on Rails application so you will need to run the following rake commands
 
-⋅⋅* `rake db:create` <-- Creates the database
-⋅⋅* `rake db:migrate` <-- Generates the tables and fields
-⋅⋅* `rake db:seed` <-- Inserts the first default API key into the table
+..* `rake db:create` <-- Creates the database
+..* `rake db:migrate` <-- Generates the tables and fields
+..* `rake db:seed` <-- Inserts the first default API key into the table
 
 - These commands will create the appointments table, the users table and the products table.
 
 3. Install a Cookie on your browser with the default API key (using your favorite cookie editor, I use "EditThisCookie" Chrome extension)
-⋅⋅* The cookie key name must be `apiKey` (case sensitive)
-⋅⋅* The cookie value must be the default API key `key123`
+..* The cookie key name must be `apiKey` (case sensitive)
+..* The cookie value must be the default API key `key123`
