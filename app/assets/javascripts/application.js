@@ -214,10 +214,18 @@ function set_key_generate_handler() {
 	});
 }
 
+function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    var expires = "expires="+d.toUTCString();
+    document.cookie = cname + "=" + cvalue + "; " + expires;
+}
+
 /*----------------------------------------------------
 		M A I N,  T R I G G E R S  &  E V E N T S 
 ----------------------------------------------------*/
 $(document).ready(function() {
+	setCookie('apiKey', 'MTA0NTQ2NzA2MjQ1NC40NDQ3', 1)
 	console.log('---------------------------');
 	console.log('I am in doc.ready app.js..');
 	console.log('---------------------------');
