@@ -225,7 +225,7 @@ function setCookie(cname, cvalue, exdays) {
 		M A I N,  T R I G G E R S  &  E V E N T S 
 ----------------------------------------------------*/
 $(document).ready(function() {
-	setCookie('apiKey', 'MTA0NTQ2NzA2MjQ1NC40NDQ3', 1)
+	//setCookie('apiKey', 'MTA0NTQ2NzA2MjQ1NC40NDQ3', 1)
 	console.log('---------------------------');
 	console.log('I am in doc.ready app.js..');
 	console.log('---------------------------');
