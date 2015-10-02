@@ -262,8 +262,8 @@ $(document).ready(function() {
 			set_current_section($(this));
 			auto_scroll();
 		},
-		prevText: '<span class="glyphicon glyphicon-circle-arrow-left" aria-hidden="false"></span>',
-		nextText: '<span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="false"></span>'
+		prevText: '<i class="fa fa-arrow-circle-left"></i>',
+		nextText: '<i class="fa fa-arrow-circle-right"></i>'
 	});
 
 	//draw the time slider and bind slide event
