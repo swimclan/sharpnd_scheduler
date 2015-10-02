@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_filter :api_authorize
+  #before_filter :api_authorize
   
   def all
     @products = Product.all

@@ -1,5 +1,5 @@
 class AppointmentsController < ApplicationController
-  before_filter :api_authorize
+  #before_filter :api_authorize
   def index
 
     @appointments = Appointment.all

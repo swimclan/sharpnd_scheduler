@@ -225,7 +225,7 @@ function setCookie(cname, cvalue, exdays) {
 		M A I N,  T R I G G E R S  &  E V E N T S 
 ----------------------------------------------------*/
 $(document).ready(function() {
-	setCookie('apiKey', 'MTAxMzAyODIyNDkzMy4zOTYx', 1)
+	//setCookie('apiKey', 'MTAxMzAyODIyNDkzMy4zOTYx', 1)
 	console.log('---------------------------');
 	console.log('I am in doc.ready app.js..');
 	console.log('---------------------------');
@@ -262,8 +262,8 @@ $(document).ready(function() {
 			set_current_section($(this));
 			auto_scroll();
 		},
-		prevText: '<span class="glyphicon glyphicon-circle-arrow-left" aria-hidden="true"></span>',
-		nextText: '<span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span>'
+		prevText: '<span class="glyphicon glyphicon-circle-arrow-left" aria-hidden="false"></span>',
+		nextText: '<span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="false"></span>'
 	});
 
 	//draw the time slider and bind slide event
